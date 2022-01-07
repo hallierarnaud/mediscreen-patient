@@ -57,6 +57,10 @@ public class PatientDAO {
     return patientRepository.existsById(id);
   }
 
+  public boolean existByLastname(String lastname) {
+    return patientRepository.existsByLastname(lastname);
+  }
+
   public Patient updatePatientWithPatientEntity (Patient patient, PatientEntity patientEntity) {
     patient.setId(patientEntity.getId());
     patient.setLastname(patientEntity.getLastname());

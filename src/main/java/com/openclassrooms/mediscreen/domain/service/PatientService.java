@@ -46,11 +46,10 @@ public class PatientService {
   }
 
   public Patient addPatient(PatientRequest patientRequest) {
-    if (patientDAO.existById(patientRequest.getId())) {
-      throw new EntityExistsException("Patient " + patientRequest.getId() + " already exists");
+    if (patientDAO.existByLastname(patientRequest.getLastname())) {
+      throw new EntityExistsException("Patient " + patientRequest.getLastname() + " already exists");
     }
     Patient patient = new Patient();
-    patient.setId(patientRequest.getId());
     updatePatientWithPatientRequest(patient, patientRequest);
     return patientDAO.addPatient(patient);
   }

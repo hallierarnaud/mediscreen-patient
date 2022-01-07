@@ -7,7 +7,6 @@ import lombok.Data;
 @Data
 public class PatientRequest {
 
-  private Long id;
   private String lastname;
   private String firstname;
   private Date birthdate;

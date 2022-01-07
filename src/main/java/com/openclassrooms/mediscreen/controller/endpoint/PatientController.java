@@ -72,7 +72,7 @@ public class PatientController {
     try {
       return patientService.addPatient(patientRequest);
     } catch (EntityExistsException e) {
-      throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, "patient " + patientRequest.getId() + " already exists");
+      throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, "patient " + patientRequest.getLastname() + " already exists");
     }
   }
 

@@ -21,7 +21,7 @@ import java.util.NoSuchElementException;
 
 import javax.persistence.EntityExistsException;
 
-@CrossOrigin(origins="*")
+@CrossOrigin(origins="http://localhost:4200")
 @RestController
 public class PatientController {
 

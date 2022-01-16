@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface PatientRepository extends CrudRepository<PatientEntity, Long> {
 
-  Boolean existsByLastname(String lastname);
+  Boolean existsByLastnameAndFirstname(String lastname, String firstname);
 
 }

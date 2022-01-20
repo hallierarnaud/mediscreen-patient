@@ -47,7 +47,7 @@ public class PatientService {
 
   public Patient addPatient(PatientRequest patientRequest) {
     if (patientDAO.existByLastnameAndFirstName(patientRequest.getLastname(), patientRequest.getFirstname())) {
-      throw new EntityExistsException("Patient " + patientRequest.getLastname() + patientRequest.getFirstname() + " already exists");
+      throw new EntityExistsException("Patient " + patientRequest.getLastname() + " " + patientRequest.getFirstname() + " already exists");
     }
     Patient patient = new Patient();
     updatePatientWithPatientRequest(patient, patientRequest);

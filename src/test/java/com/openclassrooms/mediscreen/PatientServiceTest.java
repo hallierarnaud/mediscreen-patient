@@ -23,6 +23,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -132,14 +133,15 @@ public class PatientServiceTest {
   public void addPatient_shouldReturnAlreadyExist () {
     // GIVEN
     PatientRequest patientRequest = new PatientRequest();
-    patientRequest.setId(1L);
+    patientRequest.setLastname("Simpson");
+    patientRequest.setFirstname("Homer");
 
     // WHEN
-    when(patientDAO.existById(anyLong())).thenReturn(TRUE);
+    when(patientDAO.existByLastnameAndFirstName(anyString(), anyString())).thenReturn(TRUE);
 
     // THEN
     Throwable exception = assertThrows(EntityExistsException.class, () -> patientService.addPatient(patientRequest));
-    assertEquals("Patient 1 already exists", exception.getMessage());
+    assertEquals("Patient Simpson Homer already exists", exception.getMessage());
   }
 
   @Test

@@ -24,14 +24,14 @@ public class PatientIT {
 
   @Test
   public void testGetPatientById_shouldReturnOk() throws Exception {
-    mockMvc.perform(get("/patients/2"))
+    mockMvc.perform(get("/patients/7"))
             .andExpect(status().isOk())
-            .andExpect(jsonPath("$.lastname", is("Kent")));
+            .andExpect(jsonPath("$.lastname", is("Simpson")));
   }
 
   @Test
   public void testGetPatientById_shouldReturnNotFound() throws Exception {
-    mockMvc.perform(get("/patients/1000"))
+    mockMvc.perform(get("/patients/1"))
             .andExpect(status().isNotFound());
   }
 
@@ -43,47 +43,47 @@ public class PatientIT {
 
   @Test
   public void testUpdatePatient_shouldReturnOk() throws Exception {
-    mockMvc.perform(put("/patients/2")
+    mockMvc.perform(put("/patients/7")
                     .contentType(MediaType.APPLICATION_JSON)
-                    .content("{\"lastname\":\"SuperMan\", \"birthdate\":\"1900-01-01\"}"))
+                    .content("{\"lastname\":\"Simpson\",\"firstname\":\"Homer\",\"birthdate\":\"1960-12-31\",\"sex\":\"M\",\"address\":\"SpringField\",\"phone\":\"555-555\"}"))
             .andExpect(status().isOk());
   }
 
   @Test
   public void testUpdatePatient_shouldReturnUnprocessableEntity() throws Exception {
-    mockMvc.perform(put("/patients/1000")
+    mockMvc.perform(put("/patients/1")
                     .contentType(MediaType.APPLICATION_JSON)
-                    .content("{\"lastname\":\"SuperMan\", \"birthdate\":\"1900-01-01\"}"))
+                    .content("{\"lastname\":\"test\"}"))
             .andExpect(status().isUnprocessableEntity());
   }
 
-  @Test
+  //TODO: delete patient by lastname and firstname after
+  /*@Test
   public void testPostPatient_shouldReturnOk() throws Exception {
     mockMvc.perform(post("/patients")
                     .contentType(MediaType.APPLICATION_JSON)
-                    .content("{\"id\":\"1\",\"lastname\":\"Kent\",\"firstname\":\"Clark\",\"birthdate\":\"1900-01-01\"}"))
+                    .content("{\"lastname\":\"test\",\"firstname\":\"test\"}"))
             .andExpect(status().isOk());
-  }
+  }*/
 
-  /*
   @Test
   public void testPostPatient_shouldReturnUnprocessableEntity() throws Exception {
     mockMvc.perform(post("/patients")
                     .contentType(MediaType.APPLICATION_JSON)
-                    .content("{\"id\":\"1\",\"lastname\":\"Kent\",\"firstname\":\"Clark\",\"birthdate\":\"1900-01-01\"}"))
+                    .content("{\"lastname\":\"Simpson\",\"firstname\":\"Homer\"}"))
             .andExpect(status().isUnprocessableEntity());
-  }*/
+  }
 
-  /*
-  @Test
+  //TODO: delete patient by lastname and firstname
+  /*@Test
   public void testDeletePatient_shouldReturnOk() throws Exception {
-    mockMvc.perform(delete("/patients/4"))
+    mockMvc.perform(delete("/patients/1"))
             .andExpect(status().isOk());
   }*/
 
   @Test
   public void testDeletePatient_shouldReturnNotFound() throws Exception {
-    mockMvc.perform(delete("/patients/4"))
+    mockMvc.perform(delete("/patients/1"))
             .andExpect(status().isNotFound());
   }
 

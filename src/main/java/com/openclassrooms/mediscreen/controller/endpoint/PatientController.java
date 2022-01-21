@@ -20,6 +20,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 import javax.persistence.EntityExistsException;
+import javax.validation.Valid;
 
 @CrossOrigin(origins="http://localhost:4200")
 @RestController
@@ -55,7 +56,7 @@ public class PatientController {
    * @return update the patient in the database
    */
   @PutMapping("/patients/{id}")
-  public Patient updatePatient(@PathVariable("id") long id, @RequestBody PatientRequest patientRequest) {
+  public Patient updatePatient(@PathVariable("id") long id, @Valid @RequestBody PatientRequest patientRequest) {
     try {
       return patientService.updatePatient(id, patientRequest);
     } catch (NoSuchElementException e) {
@@ -68,7 +69,7 @@ public class PatientController {
    * @return add the patient to the database
    */
   @PostMapping("/patients")
-  public Patient addPatient(@RequestBody PatientRequest patientRequest) {
+  public Patient addPatient(@Valid @RequestBody PatientRequest patientRequest) {
     try {
       return patientService.addPatient(patientRequest);
     } catch (EntityExistsException e) {

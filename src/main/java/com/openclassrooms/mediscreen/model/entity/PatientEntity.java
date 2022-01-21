@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 import lombok.Data;
 
@@ -20,9 +21,11 @@ public class PatientEntity {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
+  @NotBlank(message = "Lastname is mandatory")
   @Column(name = "lastname", length = 45)
   private String lastname;
 
+  @NotBlank(message = "Firstname is mandatory")
   @Column(name = "firstname", length = 45)
   private String firstname;
 

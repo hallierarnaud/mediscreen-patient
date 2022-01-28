@@ -10,10 +10,12 @@ services:
       - mysqldb
   mysqldb:
     image: mysql:8
+    ports:
+      - "3306:3306"
     networks:
       - mediscreen-mysql
     environment:
-      - MYSQL_ROOT_PASSWORD=M@thilde1985
+      - MYSQL_ROOT_PASSWORD=rootroot
       - MYSQL_DATABASE=mediscreen
 networks:
   mediscreen-mysql:

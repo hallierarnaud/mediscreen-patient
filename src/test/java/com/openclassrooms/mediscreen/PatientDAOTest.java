@@ -127,7 +127,7 @@ public class PatientDAOTest {
     patientEntity.setId(1L);
 
     // WHEN
-    patientRepository.deleteById(patientEntity.getId());
+    patientDAO.deletePatientById(patientEntity.getId());
 
     // THEN
     verify(patientRepository).deleteById(anyLong());

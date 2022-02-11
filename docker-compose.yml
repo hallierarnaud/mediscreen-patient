@@ -4,18 +4,5 @@ services:
     image: mediscreen
     ports:
       - "8080:8080"
-    networks:
-      - mediscreen-mysql
     depends_on:
-      - mysqldb
-  mysqldb:
-    image: mysql:8
-    ports:
-      - "3306:3306"
-    networks:
-      - mediscreen-mysql
-    environment:
-      - MYSQL_ROOT_PASSWORD=rootroot
-      - MYSQL_DATABASE=mediscreen
-networks:
-  mediscreen-mysql:
+      - mysql

@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import lombok.Data;
 
@@ -29,6 +30,7 @@ public class PatientEntity {
   @Column(name = "firstname", length = 45)
   private String firstname;
 
+  @NotNull(message = "Birthdate is mandatory")
   @Column(name = "birthdate")
   private Date birthdate;
 

@@ -1,8 +1,19 @@
 version: "3"
 services:
-  mediscreen:
-    image: mediscreen
-    ports:
-      - "8080:8080"
+  patient:
+    image: mediscreen-patient2
+    networks:
+      - patient-mysql
     depends_on:
-      - mysql
+      - mysqldb
+
+  mysqldb:
+    image: mysql:8
+    networks:
+      - patient-mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=mysql
+
+networks:
+  patient-mysql:
